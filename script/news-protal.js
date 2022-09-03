@@ -55,6 +55,8 @@ const displayNews = (data) => {
 // identify the  news id number
 const handelNewID = (id) => {
 
+    toggleSpinner(true);
+
     const url = `https://openapi.programming-hero.com/api/news/category/${id}`
 
     fetch(url).then((res) => res.json()).then((data) => displayNewsMaterial(data.data)).catch((error) => console.log(error.message))
@@ -80,12 +82,8 @@ const displayNewsMaterial = (newData) => {
 
     const lengthField = document.getElementById('data-length');
     lengthField.innerText = `${newData.length} found News List`
-
-    toggleSpinner(true);
     const newsContainer = document.getElementById('news-container');
-
     newsContainer.innerText = ''
-
     newData.forEach((v) => {
 
 
@@ -158,7 +156,7 @@ const displayNewsMaterial = (newData) => {
 
     })
 
-
+    toggleSpinner(false);
 
 
 }
