@@ -29,7 +29,7 @@ const displayNews = (data) => {
 
         const newList = document.createElement('li');
         newList.innerHTML = `
-        <a onclick="handelNewID('${x.category_id}')" class="nav-link active" aria-current="page" href="#">${x.category_name}</a>
+        <a onclick="handelNewID('${x.category_id ? x.category_id : 'News ID Not Found'}')" class="nav-link active" aria-current="page" href="#">${x.category_name}</a>
         
         `
 
@@ -94,7 +94,7 @@ const displayNewsMaterial = (newData) => {
          
          <div class="row g-0 mb-3">
          <div class="col-md-4">
-             <img src="${v.image_url}" class="img-fluid rounded-start" alt="...">
+             <img src="${v.image_url ? v.image_url : 'Image Not Found'}" class="img-fluid rounded-start" alt="...">
          </div>
          <div class="col-md-8">
              <div class="card-body">
@@ -108,10 +108,10 @@ const displayNewsMaterial = (newData) => {
  
         
         <div class="d-flex">
-        <img src="${v.author.img}" class="rounded-circle w-25 h-25" alt="...">
+        <img src="${v.author.img ? v.author.img : 'Author  Image data not Found'}" class="rounded-circle w-25 h-25" alt="...">
         
-        <div class="m-3"> <p>${v.author.name}</p>
-        <p >${v.author.published_date}</p></div>
+        <div class="m-3"> <p>${v.author.name ? v.author.name : 'Author Name Not Found'}</p>
+        <p >${v.author.published_date ? v.author.published_date : ' Author Public list  Not Found'}</p></div>
         
         </div>
         
@@ -123,7 +123,7 @@ const displayNewsMaterial = (newData) => {
             
         <p class="m-2"><i class="fa-regular fa-eye fs-3 "></i></p>
 
-        <h6 class="m-3">${v.total_view}</h6>
+        <h6 class="m-3">${v.total_view ? v.total_view : 'View Data Not Found'}</h6>
 
 
         </div>
@@ -177,14 +177,14 @@ const displayMoreDetails = (moreData) => {
     const newsDetails = document.getElementById('news-details');
 
     moreData.forEach((v) => {
-        modalTatile.innerText = `${v.title}`
+        modalTatile.innerText = `${v.title ? v.title : "Title Data not Found"}`
         newsDetails.innerHTML = `
         <div class="card" style="width: 28rem;">
-  <img src="${v ? v.thumbnail_url : 'Picture does not exist API'}" class="card-img-top" alt="...">
+  <img src="${v.thumbnail_url ? v.thumbnail_url : 'Picture does not exist API'}" class="card-img-top" alt="...">
   <div class="card-body">
-    <p> Budget :  ${v.rating.badge}</p>
+    <p> Budget :  ${v.rating.badge ? v.rating.badge : "Badge Information Not Found"}</p>
     <p>number : 
-     ${v.rating.number}</p>
+     ${v.rating.number ? v.rating.number : "Rating Not Found"}</p>
   </div>
 </div>
         
