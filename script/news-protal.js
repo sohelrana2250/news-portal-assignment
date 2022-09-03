@@ -1,5 +1,6 @@
 
 // 
+
 const loadNewsprotalApi = async () => {
     try {
 
@@ -19,23 +20,35 @@ const loadNewsprotalApi = async () => {
 // display catagory of news 
 const displayNews = (data) => {
 
+
     const navigationList = document.getElementById('navigation-list');
 
     data.forEach((x) => {
 
+
+
         const newList = document.createElement('li');
         newList.innerHTML = `
-        
         <a onclick="handelNewID('${x.category_id}')" class="nav-link active" aria-current="page" href="#">${x.category_name}</a>
         
         `
 
+
+
+
         navigationList.appendChild(newList);
+
+
 
 
         //console.log(x);
 
     })
+
+
+
+
+
 
 
 }
@@ -51,10 +64,32 @@ const handelNewID = (id) => {
 //display News Materials
 const displayNewsMaterial = (newData) => {
     //console.log(newData)
+
+    //console.log('length: ' + newData.length)
+
+
+    // console.log(newData[0].total_view)
+
+    // for (let i = 0; i < newData.length; i++) {
+
+
+    // }
+
+    newData.sort((a, b) => b.total_view - a.total_view)
+
+
+    const lengthField = document.getElementById('data-length');
+    lengthField.innerText = `${newData.length} found News List`
+
+    toggleSpinner(true);
     const newsContainer = document.getElementById('news-container');
+
     newsContainer.innerText = ''
 
     newData.forEach((v) => {
+
+
+        //b6-news-portal-assignment
 
         const newContainer = document.createElement('div');
         newContainer.innerHTML = `
@@ -118,6 +153,9 @@ const displayNewsMaterial = (newData) => {
          `
         //data-bs-toggle="modal" data-bs-target="#exampleModal"
         newsContainer.appendChild(newContainer)
+
+
+
     })
 
 
@@ -160,4 +198,21 @@ const displayMoreDetails = (moreData) => {
 
 
 }
+
+
+
+
+const toggleSpinner = (isLoadding) => {
+
+    const loadingSection = document.getElementById('loader-id');
+    if (isLoadding) {
+        loadingSection.classList.remove('d-none');
+    }
+    else {
+        loadingSection.classList.add('d-none');
+    }
+
+
+}
 loadNewsprotalApi()
+
