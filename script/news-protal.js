@@ -1,5 +1,5 @@
 
-// 
+// load News catagory information
 
 const loadNewsprotalApi = async () => {
     try {
@@ -153,16 +153,21 @@ const displayNewsMaterial = (newData) => {
 // handel new details 
 const handelNewDetails = async (newDetailsId) => {
 
-    const url = ` https://openapi.programming-hero.com/api/news/${newDetailsId}`
-    const res = await fetch(url);
-    const data = await res.json();
+    try {
+        const url = ` https://openapi.programming-hero.com/api/news/${newDetailsId}`
+        const res = await fetch(url);
+        const data = await res.json();
 
-    displayMoreDetails(data.data)
+        displayMoreDetails(data.data)
+    }
+    catch (error) {
+        console.log(error.message)
+    }
 
 
 }
 const displayMoreDetails = (moreData) => {
-    console.log(moreData)
+    // console.log(moreData)
     const modalTatile = document.getElementById('exampleModalLabel');
     const newsDetails = document.getElementById('news-details');
 
