@@ -65,23 +65,13 @@ const handelNewID = (id) => {
 }
 //display News Materials
 const displayNewsMaterial = (newData) => {
-    //console.log(newData)
 
-    //console.log('length: ' + newData.length)
-
-
-    // console.log(newData[0].total_view)
-
-    // for (let i = 0; i < newData.length; i++) {
-
-
-    // }
 
     newData.sort((a, b) => b.total_view - a.total_view)
 
 
     const lengthField = document.getElementById('data-length');
-    lengthField.innerText = `${newData.length} found News List`
+    lengthField.innerText = `${newData.length} data found News List`
     const newsContainer = document.getElementById('news-container');
     newsContainer.innerText = ''
     newData.forEach((v) => {
